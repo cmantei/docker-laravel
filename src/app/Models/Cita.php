@@ -17,5 +17,4 @@ class Cita extends Model
         
         return $this->belongsTo(User::class, 'cliente_id');
     }
-
 }

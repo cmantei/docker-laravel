@@ -1,36 +1,49 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Mis Citas') }}
+        </h2>
+    </x-slot>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+                    @if (session('success'))
+                        <div class="mb-4 text-green-600">
+                            {{ session('success') }}
+                        </div>
+                    @endif
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+                    @if ($citas->isEmpty())
+                        <p>No tienes citas registradas.</p>
+                    @else
+                        <table class="table-auto w-full border border-gray-200">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="border border-gray-300 px-4 py-2 w-1/3">Marca</th>
+                                    <th class="border border-gray-300 px-4 py-2 w-1/3">Modelo</th>
+                                    <th class="border border-gray-300 px-4 py-2 w-1/3">Matrícula</th>
+                                    <th class="border border-gray-300 px-4 py-2 w-1/3">Duración Estimada</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($citas as $cita)
+                                    <tr>
+                                        <td class="border border-gray-300 px-4 py-2 w-1/3 truncate whitespace-nowrap">{{ $cita->marca }}</td>
+                                        <td class="border border-gray-300 px-4 py-2 w-1/3 truncate whitespace-nowrap">{{ $cita->modelo }}</td>
+                                        <td class="border border-gray-300 px-4 py-2 w-1/3 truncate whitespace-nowrap">{{ $cita->matricula }}</td>
+                                        <td class="border border-gray-300 px-4 py-2 w-1/3 truncate whitespace-nowrap">{{ $cita->duracion_estimada }} min</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                </div>
+            </div>
         </div>
-    </body>
-</html>
+    </div>
+</x-app-layout>
+

@@ -18,13 +18,13 @@ class CitaFactory extends Factory
     public function definition(): array
     {
         return [
-            'cliente_id'      => '1',
+            'cliente_id'      => '2',
             'marca'           => $this->faker->word(),
             'modelo'          => $this->faker->word(),
             'matricula'       => $this->faker->word(),
             'fecha'           => $this->faker->date(),
             'hora'            => $this->faker->time(),
-            'duracion_estimada'=> $this->faker->numberBetween(15, 180) . 'min',
+            'duracion_estimada'=> $this->faker->numberBetween(15, 180) . ' min',
         ];
     }
 }

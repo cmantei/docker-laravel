@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TallerMiddleware;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\TallerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,11 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/clientes', [UserController::class, 'index'])->name('clientes.index');
 
-});
+    Route::resource('/citascliente', ClienteController::class)->only(['index', 'create', 'store']);
+    Route::resource('/citastaller', TallerController::class)->middleware(TallerMiddleware::class);
+    Route::resource('/citaspendientes', TallerController::class)->middleware(TallerMiddleware::class);
 
-Route::middleware([TallerMiddleware::class], 'auth')->group(function (){
-
-    Route::get(/)
 });
 
 require __DIR__.'/auth.php';
