@@ -59,9 +59,9 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="duracion" class="block text-gray-700">{{ __('Duracion') }}</label>
-                            <input type="text" name="duracion_estimada" id="duracion_estimada" class="w-full border-gray-300 rounded-md shadow-sm @error('duracion') border-red-500 @enderror" value="{{ old('duracion', $cita->duracion) }}" required>
-                            @error('duracion')
+                            <label for="duracion_estimada" class="block text-gray-700">{{ __('Duracion') }}</label>
+                            <input type="text" name="duracion_estimada" id="duracion_estimada" class="w-full border-gray-300 rounded-md shadow-sm @error('duracion_estimada') border-red-500 @enderror" value="{{ old('duracion_estimada', $cita->duracion_estimada) }}" required>
+                            @error('duracion_estimada')
                                 <span class="text-sm text-red-600">{{ $message }}</span>
                             @enderror
                         </div>

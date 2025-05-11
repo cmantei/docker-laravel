@@ -74,7 +74,7 @@ class TallerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cita $cita)
+    public function update(Request $request, Cita $citastaller)
     {
         // Validar los datos
         $validated = $request->validate([
@@ -92,14 +92,13 @@ class TallerController extends Controller
         unset($validated['cliente_id']);
         
         // Actualizar los campos básicos
-        $cita->fill($validated);
+        $citastaller->fill($validated);
         
         // Asociar el cliente mediante la relación
         $cliente = User::findOrFail($clienteId);
-        $cita->cliente()->associate($cliente);
+        $citastaller->cliente()->associate($cliente);
         
-        // Guardar todos los cambios
-        $cita->save();
+        $citastaller->save();
         
         return redirect()->route('citastaller.index')->with('success', 'Cita actualizada correctamente.');
     }

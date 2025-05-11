@@ -30,8 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    Route::get('/clientes', [UserController::class, 'index'])->name('clientes.index');
-
     Route::resource('/citascliente', ClienteController::class)->only(['index', 'create', 'store', 'show']);
     Route::resource('/citastaller', TallerController::class)->middleware(TallerMiddleware::class);
     
