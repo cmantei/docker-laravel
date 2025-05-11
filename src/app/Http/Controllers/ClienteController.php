@@ -33,14 +33,17 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $request->validate(Cita::rules());
-
+        //$userId = auth()->id();
+        $userId = Auth::id();
         Cita::create([
             'marca' => $request->marca,
             'modelo' => $request->modelo,
             'matricula' => $request->matricula,
+            'cliente_id' => $userId,
+
         ]);
 
-        return redirect()->route('citacliente.index')->with('success', 'Cita creada correctamente.');
+        return redirect()->route('citascliente.index')->with('success', 'Cita creada correctamente.');
     }
 
     /**
