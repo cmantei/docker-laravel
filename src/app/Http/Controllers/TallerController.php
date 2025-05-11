@@ -20,7 +20,7 @@ class TallerController extends Controller
     public function pendientes()
     {
         $citas = Cita::where('fecha', null)->get();
-        return view('taller.pendientes', compact('citas'));
+        return view('taller.index', compact('citas'));
     }
 
     /**

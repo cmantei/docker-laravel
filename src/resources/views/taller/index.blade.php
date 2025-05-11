@@ -1,11 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <div class="flex items-center gap-3">
+            <a href="{{ route('citastaller.index') }}" class="btn btn-outline-primary px-2 py-1 rounded-md">
                 {{ __('Citas') }}
-            </h2>
+            </a>
             <a href="{{ route('citastaller.create') }}" class="btn btn-outline-primary px-2 py-1 rounded-md">
                 {{ __('Nueva cita') }}
+            </a>
+            <a href="{{ route('pendientes') }}" class="btn btn-outline-primary px-2 py-1 rounded-md">
+                {{ __('Pendientes') }}
             </a>
         </div>
     </x-slot>

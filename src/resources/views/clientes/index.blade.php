@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <div class="flex items-center gap-3">
+        <a href="{{ route('citascliente.index') }}" class="btn btn-outline-primary px-2 py-1 rounded-md">
                 {{ __('Citas') }}
-            </h2>
+            </a>
             <a href="{{ route('citascliente.create') }}" class="btn btn-outline-primary px-2 py-1 rounded-md">
                 {{ __('Nueva cita') }}
             </a>

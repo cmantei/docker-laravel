@@ -34,7 +34,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/citascliente', ClienteController::class)->only(['index', 'create', 'store', 'show']);
     Route::resource('/citastaller', TallerController::class)->middleware(TallerMiddleware::class);
-    Route::resource('/citaspendientes', TallerController::class)->middleware(TallerMiddleware::class);
+    
+    Route::get('/pendientes', [TallerController::class, 'pendientes'])->middleware(TallerMiddleware::class)->name('pendientes');
 
 });
 
