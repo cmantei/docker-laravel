@@ -11,10 +11,19 @@ class Cita extends Model
     /** @use HasFactory<\Database\Factories\CitaFactory> */
     use HasFactory;
 
-    protected $fillable = ['marca','modelo','matricula','duracion_estimada'];
+    protected $fillable = ['marca','modelo','matricula'];
 
     public function cliente(): BelongsTo {
         
         return $this->belongsTo(User::class, 'cliente_id');
+    }
+
+    public static function rules()
+    {
+        return [
+            'marca' => 'required',
+            'modelo' => 'required',
+            'matricula' => 'required|min:6'
+        ];
     }
 }

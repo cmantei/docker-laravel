@@ -32,7 +32,15 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(Cita::rules());
+
+        Cita::create([
+            'marca' => $request->marca,
+            'modelo' => $request->modelo,
+            'matricula' => $request->matricula,
+        ]);
+
+        return redirect()->route('citacliente.index')->with('success', 'Cita creada correctamente.');
     }
 
     /**
