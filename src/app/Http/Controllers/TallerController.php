@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cita;
+use App\Models\User;
 
 class TallerController extends Controller
 {
@@ -19,7 +20,7 @@ class TallerController extends Controller
     public function pendientes()
     {
         $citas = Cita::where('fecha', null)->get();
-        return view('taller.index', compact('citas'));
+        return view('taller.pendientes', compact('citas'));
     }
 
     /**
@@ -27,7 +28,8 @@ class TallerController extends Controller
      */
     public function create()
     {
-        //
+        $clientes = User::where('role', 'cliente')->get();
+        return view('taller.create', compact('clientes'));
     }
 
     /**
@@ -43,7 +45,8 @@ class TallerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $cita = Cita::with('cliente')->findOrFail($id);
+        return view('taller.show', compact('cita'));
     }
 
     /**
