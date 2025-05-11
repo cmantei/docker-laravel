@@ -44,7 +44,7 @@
                         <div class="mb-4">
                             <label for="fecha" class="block text-gray-700">{{ __('Fecha') }}</label>
                             <input type="date" name="fecha" id="fecha" class="w-full border-gray-300 rounded-md shadow-sm @error('fecha') border-red-500 @enderror" value="{{ old('fecha') }}" required>
-                            @error('matricula')
+                            @error('fecha')
                                 <span class="text-sm text-red-600">{{ $message }}</span>
                             @enderror
                         </div>
@@ -74,7 +74,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('role')
+                            @error('cliente_id')
                                 <span class="text-sm text-red-600">{{ $message }}</span>
                             @enderror
                         </div>

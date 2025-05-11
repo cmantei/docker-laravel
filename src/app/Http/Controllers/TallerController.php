@@ -66,16 +66,42 @@ class TallerController extends Controller
      */
     public function edit(string $id)
     {
+        $clientes = User::where('role', 'cliente')->get();
         $cita = Cita::with('cliente')->findOrFail($id);
-        return view('taller.edit', compact('cita'));
+        return view('taller.edit', compact('cita', 'clientes'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Cita $cita)
     {
-        //
+        // Validar los datos
+        $validated = $request->validate([
+            'marca' => 'required|string|max:255',
+            'modelo' => 'required|string|max:255',
+            'matricula' => 'required|string|max:255',
+            'fecha' => 'required|date',
+            'hora' => 'required',
+            'duracion_estimada' => 'required|string',
+            'cliente_id' => 'required|exists:users,id',
+        ]);
+        
+        // Extraer el cliente_id y quitar del array para actualizar
+        $clienteId = $validated['cliente_id'];
+        unset($validated['cliente_id']);
+        
+        // Actualizar los campos básicos
+        $cita->fill($validated);
+        
+        // Asociar el cliente mediante la relación
+        $cliente = User::findOrFail($clienteId);
+        $cita->cliente()->associate($cliente);
+        
+        // Guardar todos los cambios
+        $cita->save();
+        
+        return redirect()->route('citastaller.index')->with('success', 'Cita actualizada correctamente.');
     }
 
     /**

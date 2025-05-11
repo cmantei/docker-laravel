@@ -14,11 +14,12 @@
         <div class="max-w-7xl mx-auto">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('citastaller.store') }}" method="POST">
+                    <form action="{{ route('citastaller.update', $cita) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="mb-4">
                             <label for="marca" class="block text-gray-700">{{ __('Marca vehiculo') }}</label>
-                            <input type="text" name="marca" id="marca" class="w-full border-gray-300 rounded-md shadow-sm @error('marca') border-red-500 @enderror" value="{{ old('marca') }}" required>
+                            <input type="text" name="marca" id="marca" class="w-full border-gray-300 rounded-md shadow-sm @error('marca') border-red-500 @enderror" value="{{ old('marca', $cita->marca) }}" required>
                             @error('marca')
                                 <span class="text-sm text-red-600">{{ $message }}</span>
                             @enderror
@@ -26,7 +27,7 @@
 
                         <div class="mb-4">
                             <label for="modelo" class="block text-gray-700">{{ __('Modelo vehiculo') }}</label>
-                            <input type="text" name="modelo" id="modelo" class="w-full border-gray-300 rounded-md shadow-sm @error('modelo') border-red-500 @enderror" value="{{ old('modelo') }}" required>
+                            <input type="text" name="modelo" id="modelo" class="w-full border-gray-300 rounded-md shadow-sm @error('modelo') border-red-500 @enderror" value="{{ old('modelo', $cita->modelo) }}" required>
                             @error('modelo')
                                 <span class="text-sm text-red-600">{{ $message }}</span>
                             @enderror
@@ -34,7 +35,7 @@
 
                         <div class="mb-4">
                             <label for="matricula" class="block text-gray-700">{{ __('Matricula vehiculo') }}</label>
-                            <input type="text" name="matricula" id="matricula" class="w-full border-gray-300 rounded-md shadow-sm @error('matricula') border-red-500 @enderror" value="{{ old('matricula') }}" required>
+                            <input type="text" name="matricula" id="matricula" class="w-full border-gray-300 rounded-md shadow-sm @error('matricula') border-red-500 @enderror" value="{{ old('matricula', $cita->matricula) }}" required>
                             @error('matricula')
                                 <span class="text-sm text-red-600">{{ $message }}</span>
                             @enderror
@@ -43,15 +44,15 @@
 
                         <div class="mb-4">
                             <label for="fecha" class="block text-gray-700">{{ __('Fecha') }}</label>
-                            <input type="date" name="fecha" id="fecha" class="w-full border-gray-300 rounded-md shadow-sm @error('fecha') border-red-500 @enderror" value="{{ old('fecha') }}" required>
-                            @error('matricula')
+                            <input type="date" name="fecha" id="fecha" class="w-full border-gray-300 rounded-md shadow-sm @error('fecha') border-red-500 @enderror" value="{{ old('fecha', $cita->fecha) }}" required>
+                            @error('fecha')
                                 <span class="text-sm text-red-600">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="mb-4">
                             <label for="hora" class="block text-gray-700">{{ __('Hora') }}</label>
-                            <input type="time" name="hora" id="hora" class="w-full border-gray-300 rounded-md shadow-sm @error('hora') border-red-500 @enderror" value="{{ old('hora') }}" required>
+                            <input type="time" name="hora" id="hora" class="w-full border-gray-300 rounded-md shadow-sm @error('hora') border-red-500 @enderror" value="{{ old('hora', $cita->hora) }}" required>
                             @error('hora')
                                 <span class="text-sm text-red-600">{{ $message }}</span>
                             @enderror
@@ -59,7 +60,7 @@
 
                         <div class="mb-4">
                             <label for="duracion" class="block text-gray-700">{{ __('Duracion') }}</label>
-                            <input type="text" name="duracion" id="duracion" class="w-full border-gray-300 rounded-md shadow-sm @error('duracion') border-red-500 @enderror" value="{{ old('duracion') }}" required>
+                            <input type="text" name="duracion_estimada" id="duracion_estimada" class="w-full border-gray-300 rounded-md shadow-sm @error('duracion') border-red-500 @enderror" value="{{ old('duracion', $cita->duracion) }}" required>
                             @error('duracion')
                                 <span class="text-sm text-red-600">{{ $message }}</span>
                             @enderror
@@ -67,14 +68,14 @@
 
                         <div class="mb-4">
                             <label for="cliente" class="block text-gray-700">{{ __('Cliente') }}</label>
-                            <select name="cliente_id" id="cliente" class="w-full border-gray-300 rounded-md shadow-sm @error('cliente') border-red-500 @enderror" required>
+                            <select name="cliente_id" id="cliente" class="w-full border-gray-300 rounded-md shadow-sm @error('cliente_id') border-red-500 @enderror" required>
                                 @foreach($clientes as $cliente)
-                                    <option value="{{ $cliente->id }}">
+                                    <option value="{{ $cliente->id }}" {{ old('cliente_id', $cita->cliente_id) == $cliente->id ? 'selected' : '' }}>
                                         {{ $cliente->name }}
                                     </option>
                                 @endforeach
                             </select>
-                            @error('role')
+                            @error('cliente_id')
                                 <span class="text-sm text-red-600">{{ $message }}</span>
                             @enderror
                         </div>
