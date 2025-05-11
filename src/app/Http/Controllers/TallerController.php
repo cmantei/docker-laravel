@@ -37,7 +37,19 @@ class TallerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(Cita::rules());
+
+        Cita::create([
+            'marca' => $request->marca,
+            'modelo' => $request->modelo,
+            'matricula' => $request->matricula,
+            'cliente_id' => $request->cliente_id,
+            'fecha' => $request->fecha,
+            'hora' => $request->hora,
+            'duracion_estimada' => $request->duracion,
+        ]);
+
+        return redirect()->route('citastaller.index')->with('success', 'Cita creada correctamente.');
     }
 
     /**
@@ -54,7 +66,8 @@ class TallerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $cita = Cita::with('cliente')->findOrFail($id);
+        return view('taller.edit', compact('cita'));
     }
 
     /**
@@ -70,6 +83,8 @@ class TallerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $cita = Cita::with('cliente')->findOrFail($id);
+        $cita->delete();
+        return redirect()->route('citastaller.index')->with('success', 'Usuario borrado correctamente.');
     }
 }

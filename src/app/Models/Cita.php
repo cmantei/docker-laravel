@@ -11,7 +11,7 @@ class Cita extends Model
     /** @use HasFactory<\Database\Factories\CitaFactory> */
     use HasFactory;
 
-    protected $fillable = ['marca','modelo','matricula', 'cliente_id'];
+    protected $fillable = ['marca','modelo','matricula', 'cliente_id', 'fecha', 'hora', 'duracion_estimada'];
 
     public function cliente(): BelongsTo {
         

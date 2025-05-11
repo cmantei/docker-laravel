@@ -25,7 +25,7 @@
                         <table class="table-fixed w-full border-collapse border border-gray-300">
                             <thead>
                                 <tr class="bg-gray-100">
-                                    <th class="border border-gray-300 px-4 py-2 w-1/3">{{ __('ID Cliente') }}</th>
+                                    <th class="border border-gray-300 px-4 py-2 w-1/3">{{ __('Cliente') }}</th>
                                     <th class="border border-gray-300 px-4 py-2 w-1/3">{{ __('Coche') }}</th>
                                     <th class="border border-gray-300 px-4 py-2 w-1/3">{{ __('Matricula') }}</th>
                                     <th class="border border-gray-300 px-4 py-2 w-1/3">{{ __('Fecha') }}</th>
@@ -37,7 +37,7 @@
                             <tbody>
                                 @foreach ($citas as $cita)
                                     <tr>
-                                        <td class="border border-gray-300 px-4 py-2 w-1/3 truncate whitespace-nowrap">{{ $cita->cliente_id }}</td>
+                                        <td class="border border-gray-300 px-4 py-2 w-1/3 truncate whitespace-nowrap">{{ $cita->cliente->name }}</td>
                                         <td class="border border-gray-300 px-4 py-2 w-1/3 truncate whitespace-nowrap">{{ $cita->marca }} - {{ $cita->modelo }}</td>
                                         <td class="border border-gray-300 px-4 py-2 w-1/3 truncate whitespace-nowrap">{{ $cita->matricula }}</td>
                                         <td class="border border-gray-300 px-4 py-2 w-1/3 truncate whitespace-nowrap">{{ $cita->fecha }}</td>
@@ -49,6 +49,20 @@
                                                 <a href="{{ route('citastaller.show', $cita->id) }}" class="btn btn-sm btn-outline-primary" title="{{ __('Ver') }}">
                                                     <i class="bi bi-eye-fill"></i>
                                                 </a>
+                                                <a href="{{ route('citastaller.edit', $cita->id) }}" class="btn btn-sm btn-outline-success" title="{{ __('Editar') }}">
+                                                    <i class="bi bi-pencil-fill"></i>
+                                                </a>
+                                                
+                                                <form action="{{ route('citastaller.destroy', $cita->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger" 
+                                                            title="{{ __('Eliminar') }}"
+                                                            onclick="return confirm('{{ __('¿Estás seguro?') }}')">
+                                                        <i class="bi bi-trash-fill"></i>
+                                                    </button>
+                                                </form>
+                                                
                                             </div>
                                         </td>
                                     </tr>
