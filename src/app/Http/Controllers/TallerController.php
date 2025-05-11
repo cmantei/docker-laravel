@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cita;
 
 class TallerController extends Controller
 {
@@ -11,7 +12,14 @@ class TallerController extends Controller
      */
     public function index()
     {
-        //
+        $citas = Cita::all();
+        return view('taller.index', compact('citas'));
+    }
+
+    public function pendientes()
+    {
+        $citas = Cita::where('fecha', null)->get();
+        return view('taller.index', compact('citas'));
     }
 
     /**

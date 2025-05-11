@@ -24,7 +24,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('clientes.create');
     }
 
     /**
@@ -40,7 +40,9 @@ class ClienteController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = Auth::user();
+        $cita = Cita::where('id', $id)->where('cliente_id', $user->id)->firstOrFail();
+        return view('clientes.show', compact('cita', 'user'));
     }
 
     /**

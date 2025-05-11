@@ -1,36 +1,45 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+<x-app-layout>
+    <x-slot name="header">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Detalles de la cita') }}
+            </h2>
+            <a href="{{ route('citascliente.index') }}" class="btn btn-outline-primary px-2 py-1 rounded-md">
+                {{ __('Volver') }}
+            </a>
         </div>
-    </body>
-</html>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 bg-white rounded-lg shadow-md">
+                    <ul class="space-y-6">
+                    <li class="flex items-center">
+                            <i class="bi bi-person-badge-fill text-purple-500 me-2"></i>
+                            <span class="font-medium text-gray-700">{{ __('Cliente:') }}</span>
+                            <span class="ms-2 text-gray-900">{{ $user->name }}</span>
+                            <span class="ms-2 text-gray-900">{{ $user->email }}</span>
+
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-person-fill text-blue-500 me-2"></i>
+                            <span class="font-medium text-gray-700">{{ __('Coche:') }}</span>
+                            <span class="ms-2 text-gray-900">{{ $cita->marca }}</span>
+                            <span class="ms-2 text-gray-900">{{ $cita->modelo }}</span>
+                            <span class="ms-2 text-gray-900">{{ $cita->matricula }}</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-envelope-fill text-green-500 me-2"></i>
+                            <span class="font-medium text-gray-700">{{ __('Fecha:') }}</span>
+                            <span class="ms-2 text-gray-900">{{ $cita->fecha }}</span>
+                            <span class="ms-2 text-gray-900">{{ $cita->hora }}</span>
+                            <span class="ms-2 text-gray-900">{{ $cita->duracion_estimada }}</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</x-app-layout>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -11,7 +12,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        $roles = User::roles();
+        return view('users.index', compact('users', 'roles'));
+
+    }
+
+    public function clientes()
+    {
+        $users = User::where('role', 'cliente')->get();
+        $roles = User::roles();
+        return view('users.index', compact('users', 'roles'));
+
     }
 
     /**
@@ -19,7 +31,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = User::roles();
+        return view('users.create', compact('roles'));   
     }
 
     /**
@@ -27,7 +40,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(User::rules());
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        return redirect()->route('users.index')->with('Success', 'Usuario creado correctamente.');
     }
 
     /**
