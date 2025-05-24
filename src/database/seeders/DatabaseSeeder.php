@@ -22,6 +22,13 @@ class DatabaseSeeder extends Seeder
             'role' => 'taller',
         ]);
 
+        User::factory()->create([
+            'name' => 'Cliente',
+            'email' => 'cliente@example.com',
+            'password' => 'abc123.',
+            'role' => 'cliente',
+        ]);
+
         User::factory(10)->create();
         Cita::factory(10)->create();
 

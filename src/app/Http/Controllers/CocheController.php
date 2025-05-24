@@ -12,8 +12,9 @@ class CocheController extends Controller
      */
     public function index()
     {
-        $coches = Coche::where('user_id', auth()->id())->get();
-        return response()->json($coches);
+        return response()->json(Coche::all());
+        //$coches = Coche::where('user_id', auth()->id())->get();
+        //return response()->json($coches);
     }
 
     /**
