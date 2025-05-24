@@ -36,7 +36,14 @@ class DatabaseSeeder extends Seeder
             'marca' => 'Alfa Romeo',
             'modelo' => 'Giulia',
             'matricula' => 'ZXC-234',
-            'cliente_id' => '2'
+            'cliente_id' => '1'
+        ]);
+
+        Coche::factory()->create([
+            'marca' => 'Seat',
+            'modelo' => 'Ibiza',
+            'matricula' => 'JKL-765',
+            'cliente_id' => '1'
         ]);
 
         Coche::factory()->create([
@@ -47,9 +54,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Coche::factory()->create([
-            'marca' => 'Seat',
-            'modelo' => 'Ibiza',
-            'matricula' => 'JKL-765',
+            'marca' => 'Opel',
+            'modelo' => 'Astra',
+            'matricula' => 'WWW-333',
             'cliente_id' => '2'
         ]);
 
@@ -61,17 +68,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Coche::factory()->create([
-            'marca' => 'Opel',
-            'modelo' => 'Astra',
-            'matricula' => 'WWW-333',
-            'cliente_id' => '3'
-        ]);
-
-        Coche::factory()->create([
             'marca' => 'Subaru',
             'modelo' => 'Impreza',
             'matricula' => 'YTR-842',
-            'cliente_id' => '4'
+            'cliente_id' => '3'
         ]);
     }
 }

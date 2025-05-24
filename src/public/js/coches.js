@@ -187,12 +187,14 @@ function irAListado() {
 // Inicialización de la página
 function init() {
     obtenerCoches();
+    const form = document.getElementById('coche-form');
+    form.reset();
+    document.getElementById('coche-id').value = '';
+
     document.getElementById('limpiar-formulario').addEventListener('click', () => {
-        const form = document.getElementById('coche-form');
         form.reset();
         document.getElementById('coche-id').value = '';
     });
 }
 
 document.addEventListener('DOMContentLoaded', init);
-

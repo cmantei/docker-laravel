@@ -18,9 +18,9 @@
                     </div>
 
                     <!-- Formulario para crear/actualizar coches -->
-                    <div class="mt-6">
+                    <div class="mt-6" id="detalles-coche">
                         <h3 class="text-lg font-semibold">Coche</h3>
-                        <p>Selecciona un coche para ver los detalles.</p>
+                        <p>Selecciona un coche para para actualizar sus datos.</p>
                         <form id="coche-form">
                             <input type="hidden" id="coche-id" name="id" value="">
                             <div class="mb-4">

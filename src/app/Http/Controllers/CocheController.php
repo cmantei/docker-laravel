@@ -12,9 +12,8 @@ class CocheController extends Controller
      */
     public function index()
     {
-        return response()->json(Coche::all());
-        //$coches = Coche::where('user_id', auth()->id())->get();
-        //return response()->json($coches);
+        $coches = Coche::where('cliente_id', auth()->id())->get();
+        return response()->json($coches);
     }
 
     /**
@@ -23,7 +22,7 @@ class CocheController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate(Coche::rules());
-        $validatedData['user_id'] = auth()->id();
+        $validatedData['cliente_id'] = auth()->id();
         $producto = Coche::create($validatedData);
         return response()->json($producto, 201);
     }

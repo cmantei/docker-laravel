@@ -9,9 +9,9 @@ class Coche extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['marca', 'modelo', 'matricula'];
+    protected $fillable = ['marca', 'modelo', 'matricula', 'cliente_id'];
 
-    public static function rules() : array {
+    public static function rules() {
         return [
             'marca' => 'required|string|max:255',
             'modelo' => 'required|string|max:255',
