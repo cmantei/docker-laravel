@@ -9,11 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CocheWebController;
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::middleware('auth')->group(function () {
 
@@ -29,9 +27,9 @@ Route::middleware('auth')->group(function () {
         abort(403, 'Acceso denegado.');
      })->middleware(['auth', 'verified'])->name('dashboard');
     
-     Route::get('/', function () {
-        return redirect()->route('dashboard');
-    });
+    // Route::get('/', function () {
+    //    return redirect()->route('dashboard');
+    //});
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -41,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/citastaller', TallerController::class)->middleware(TallerMiddleware::class);
     
     Route::get('/pendientes', [TallerController::class, 'pendientes'])->middleware(TallerMiddleware::class)->name('pendientes');
+    
     Route::get('/coches', [CocheWebController::class, 'index'])->name('coches');
 
 });

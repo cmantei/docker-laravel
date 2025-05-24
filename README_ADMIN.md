@@ -16,4 +16,4 @@ Se creará un usuario con el rol cliente:
 email: `cliente@example.com`
 password: `abc123.`
 
-Se crearán tambien clientes aleatorios en la base de datos con la contraseña `abc123.` y coches para los 3 primeros usuarios.
+Se crearán tambien 10 clientes aleatorios en la base de datos con la contraseña `abc123.` y coches para los 3 primeros usuarios.
