@@ -38,5 +38,40 @@ class DatabaseSeeder extends Seeder
             'matricula' => 'ZXC-234',
             'cliente_id' => '2'
         ]);
+
+        Coche::factory()->create([
+            'marca' => 'Toyota',
+            'modelo' => 'Yaris',
+            'matricula' => 'JMK-101',
+            'cliente_id' => '2'
+        ]);
+
+        Coche::factory()->create([
+            'marca' => 'Seat',
+            'modelo' => 'Ibiza',
+            'matricula' => 'JKL-765',
+            'cliente_id' => '2'
+        ]);
+
+        Coche::factory()->create([
+            'marca' => 'Peugeot',
+            'modelo' => '308',
+            'matricula' => 'RWG-932',
+            'cliente_id' => '3'
+        ]);
+
+        Coche::factory()->create([
+            'marca' => 'Opel',
+            'modelo' => 'Astra',
+            'matricula' => 'WWW-333',
+            'cliente_id' => '3'
+        ]);
+
+        Coche::factory()->create([
+            'marca' => 'Subaru',
+            'modelo' => 'Impreza',
+            'matricula' => 'YTR-842',
+            'cliente_id' => '4'
+        ]);
     }
 }
